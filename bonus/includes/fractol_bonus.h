@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:25 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/26 03:22:38 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 16:22:36 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -424,6 +424,8 @@ typedef struct s_display
  * @var c           The complex number C representing the current pixel's 
  * coordinate.
  * @var delta       The extra parameter used specifically for Phoenix sets.
+ * @var delta_init  The initial delta value cached to restore the fractal on 
+ * reset.
  * @var is_gray     Boolean flag toggling grayscale shading.
  * @var palette_idx The index of the currently active color palette.
  * @var palette     Array of function pointers to the available palettes.
@@ -445,6 +447,7 @@ typedef struct s_fractal
 	t_complex		z;
 	t_complex		c;
 	double			delta;
+	double			delta_init;
 	bool			is_gray;
 	int				palette_idx;
 	t_palette_func	palette[PALETTE_TOTAL];

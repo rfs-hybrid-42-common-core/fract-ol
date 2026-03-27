@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:45 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/27 14:39:17 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 16:19:14 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	parse_phoenix_delta(t_fractal *frac, char *delta)
 		frac->delta = DELTA_MIN;
 	else if (frac->delta > DELTA_MAX)
 		frac->delta = DELTA_MAX;
+	frac->delta_init = frac->delta;
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:34:41 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/27 15:27:17 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 16:20:24 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @fn static void update_phoenix_delta(int keysym, t_fractal *frac)
  * @brief Adjusts the delta parameter for Phoenix fractals via keyboard.
  * @details Modifies the delta value using the bracket keys and clamps it 
- * securely between DELTA_MIN and DELTA_MAX.
+ * securely between DELTA_MIN and DELTA_MAX. Also restores the initial delta.
  * @param keysym The keycode pressed.
  * @param frac   Pointer to the main fractal structure.
  */
@@ -36,6 +36,8 @@ static void	update_phoenix_delta(int keysym, t_fractal *frac)
 			if (frac->delta > DELTA_MAX)
 				frac->delta = DELTA_MAX;
 		}
+		if (keysym == XK_r)
+			frac->delta = frac->delta_init;
 	}
 }
 
