@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 01:07:04 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/26 03:10:39 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 16:04:20 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	phoenix_variant(t_fractal *frac)
 		tmp = frac->z.re * frac->z.re - frac->z.im * frac->z.im
 			+ frac->c.re + frac->delta * prev_re;
 		prev_im = frac->z.im;
-		frac->z.im = 2.0 * frac->z.re * frac->z.im + frac->delta * prev_im;
+		frac->z.im = 2.0 * frac->z.re * frac->z.im + frac->c.im
+			+ frac->delta * prev_im;
 		prev_re = frac->z.re;
 		frac->z.re = tmp;
 	}
