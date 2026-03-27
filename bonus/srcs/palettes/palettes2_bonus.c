@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 18:38:48 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/27 18:39:20 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 18:52:48 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ int	autumn_frost_palette(int iter, int max_iter)
 	red = (int)(255 * sqrt(tmp));
 	red = (int)((0.8 * red) + (0.2 * (255 * (0.5 + 0.5 * sin(15 * tmp)))));
 	green = (int)(255 * tmp * tmp);
-	green = (int)((0.7 * green) + (0.3 * (255 * (0.5 + 0.5 * sin(15 * tmp + 2)))));
+	green = (int)((0.7 * green) + (0.3 * (255 * (0.5 + 0.5
+						* sin(15 * tmp + 2)))));
 	blue = (int)(255 * tmp * tmp * tmp * tmp);
-	blue = (int)((0.5 * blue) + (0.5 * (255 * (0.5 + 0.5 * sin(15 * tmp + 4)))));
+	blue = (int)((0.5 * blue) + (0.5 * (255 * (0.5 + 0.5
+						* sin(15 * tmp + 4)))));
 	return ((red << 16) | (green << 8) | blue);
 }
 
