@@ -6,11 +6,38 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:34:41 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/26 03:10:03 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 15:27:17 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
+
+/**
+ * @fn static void update_phoenix_delta(int keysym, t_fractal *frac)
+ * @brief Adjusts the delta parameter for Phoenix fractals via keyboard.
+ * @details Modifies the delta value using the bracket keys and clamps it 
+ * securely between DELTA_MIN and DELTA_MAX.
+ * @param keysym The keycode pressed.
+ * @param frac   Pointer to the main fractal structure.
+ */
+static void	update_phoenix_delta(int keysym, t_fractal *frac)
+{
+	if (frac->type == PHOENIX_TYPE || frac->type == PHOENIX_VARIANT_TYPE)
+	{
+		if (keysym == XK_bracketleft)
+		{
+			frac->delta -= DELTA_SCALE;
+			if (frac->delta < DELTA_MIN)
+				frac->delta = DELTA_MIN;
+		}
+		if (keysym == XK_bracketright)
+		{
+			frac->delta += DELTA_SCALE;
+			if (frac->delta > DELTA_MAX)
+				frac->delta = DELTA_MAX;
+		}
+	}
+}
 
 /**
  * @fn static void apply_color_shade(int keysym, t_fractal *frac)
@@ -116,21 +143,7 @@ int	handle_key_event(int keysym, t_fractal *frac)
 {
 	if (keysym == XK_Escape)
 		exit_program(&frac->disp);
-	if (frac->type == PHOENIX_TYPE || frac->type == PHOENIX_VARIANT_TYPE)
-	{
-		if (keysym == '[')
-		{
-			frac->delta -= DELTA_SCALE;
-			if (frac->delta < DELTA_MIN)
-				frac->delta = DELTA_MIN;
-		}
-		if (keysym == ']')
-		{
-			frac->delta += DELTA_SCALE;
-			if (frac->delta > DELTA_MAX)
-				frac->delta = DELTA_MAX;
-		}
-	}
+	update_phoenix_delta(keysym, frac);
 	apply_color_shade(keysym, frac);
 	screen_padding_zoom(keysym, frac);
 	update_iterations(keysym, frac);
