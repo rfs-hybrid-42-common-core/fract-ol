@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 18:38:48 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/26 03:11:04 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 18:39:20 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	autumn_palette(int iter, int max_iter)
 	int		blue;
 
 	tmp = (double)iter / max_iter;
-	red = (int)(15 * (1 - tmp) * tmp * tmp * 255);
-	green = (int)(8 * (1 - tmp) * (1 - tmp) * tmp * 255);
-	blue = (int)(3 * (1 - tmp) * (1 - tmp) * (1 - tmp) * 255);
+	red = (int)(255 * sqrt(tmp));
+	green = (int)(255 * tmp * tmp);
+	blue = (int)(255 * tmp * tmp * tmp * tmp);
 	return ((red << 16) | (green << 8) | blue);
 }
 
@@ -52,15 +52,12 @@ int	autumn_frost_palette(int iter, int max_iter)
 	int		blue;
 
 	tmp = (double)iter / max_iter;
-	red = (int)(15 * (1 - tmp) * tmp * tmp * 255);
-	red = (int)((0.7 * red)
-			+ (0.3 * (50 * (0.5 + 0.5 * sin(6.2831 * tmp + 4)))));
-	green = (int)(8 * (1 - tmp) * (1 - tmp) * tmp * 255);
-	green = (int)((0.8 * green)
-			+ (0.2 * (100 * (0.5 + 0.5 * sin(6.2831 * tmp + 2)))));
-	blue = (int)(3 * (1 - tmp) * (1 - tmp) * (1 - tmp) * 255);
-	blue = (int)((0.7 * blue)
-			+ (0.3 * (100 * (0.5 + 0.5 * sin(6.2831 * tmp + 2)))));
+	red = (int)(255 * sqrt(tmp));
+	red = (int)((0.8 * red) + (0.2 * (255 * (0.5 + 0.5 * sin(15 * tmp)))));
+	green = (int)(255 * tmp * tmp);
+	green = (int)((0.7 * green) + (0.3 * (255 * (0.5 + 0.5 * sin(15 * tmp + 2)))));
+	blue = (int)(255 * tmp * tmp * tmp * tmp);
+	blue = (int)((0.5 * blue) + (0.5 * (255 * (0.5 + 0.5 * sin(15 * tmp + 4)))));
 	return ((red << 16) | (green << 8) | blue);
 }
 

@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 18:38:52 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/26 03:11:00 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 18:41:56 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,41 @@ int	blue_orange_palette(int iter, int max_iter)
 int	lava_lamp_palette(int iter, int max_iter)
 {
 	double	tmp;
+	double	glow;
 	int		red;
 	int		green;
 	int		blue;
 
 	tmp = (double)iter / max_iter;
-	red = (int)(255 * (0.5 + 0.5 * cos(3.0 * 3.1415 * tmp)));
-	green = (int)(255 * (0.5 + 0.5 * sin(6.2831 * tmp + 1.0)));
-	blue = (int)(255 * (0.5 + 0.5 * sin(3.0 * 3.1415 * tmp)));
+	glow = sqrt(tmp);
+	red = (int)(255 * glow * (0.5 + 0.5 * cos(3.0 * 3.1415 * tmp)));
+	green = (int)(255 * glow * (0.5 + 0.5 * sin(6.2831 * tmp + 1.0)));
+	blue = (int)(255 * glow * (0.5 + 0.5 * sin(3.0 * 3.1415 * tmp)));
+	return ((red << 16) | (green << 8) | blue);
+}
+
+/**
+ * @fn int neon_cyberpunk_palette(int iter, int max_iter)
+ * @brief Generates a specific color based on the current iteration.
+ * @details Uses trigonometric or polynomial functions to smoothly interpolate 
+ * RGB values.
+ * @param iter     The current iteration count for a pixel.
+ * @param max_iter The maximum iterations allowed.
+ * @return         The calculated color as an integer (0xRRGGBB).
+ */
+int	neon_cyberpunk_palette(int iter, int max_iter)
+{
+	double	tmp;
+	double	glow;
+	int		red;
+	int		green;
+	int		blue;
+
+	tmp = (double)iter / max_iter;
+	glow = sqrt(tmp);
+	red = (int)(255 * glow * (0.5 + 0.5 * sin(15 * tmp)));
+	green = (int)(255 * glow * (0.5 + 0.5 * sin(30 * tmp + 2.0)));
+	blue = (int)(255 * glow * (0.5 + 0.5 * sin(10 * tmp + 4.0)));
 	return ((red << 16) | (green << 8) | blue);
 }
 
@@ -126,31 +153,4 @@ int	hsv_palette(int iter, int max_iter)
 	if (i % 6 == 4)
 		return ((p << 16) | (0 << 8) | 255);
 	return ((255 << 16) | (0 << 8) | q);
-}
-
-/**
- * @fn int electric_carnival_palette(int iter, int max_iter)
- * @brief Generates a specific color based on the current iteration.
- * @details Uses trigonometric or polynomial functions to smoothly interpolate 
- * RGB values.
- * @param iter     The current iteration count for a pixel.
- * @param max_iter The maximum iterations allowed.
- * @return         The calculated color as an integer (0xRRGGBB).
- */
-int	electric_carnival_palette(int iter, int max_iter)
-{
-	double	tmp;
-	int		red;
-	int		green;
-	int		blue;
-
-	tmp = (double)iter / max_iter;
-	red = (int)(255 * (0.5 + 0.5 * sin(8 * tmp + 0)));
-	red = (int)((0.8 * red) + (0.2 * (255 * (0.5 + 0.5 * sin(10 * tmp)))));
-	green = (int)(255 * (0.5 + 0.5 * sin(8 * tmp + 2)));
-	green = (int)((0.7 * green)
-			+ (0.3 * (255 * (0.5 + 0.5 * sin(10 * tmp)))));
-	blue = (int)(255 * (0.5 + 0.5 * sin(8 * tmp + 4)));
-	blue = (int)((0.6 * blue) + (0.4 * (255 * (0.5 + 0.5 * sin(10 * tmp)))));
-	return ((red << 16) | (green << 8) | blue);
 }
