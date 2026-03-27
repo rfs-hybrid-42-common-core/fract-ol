@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 01:01:30 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/26 01:28:00 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 15:38:30 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	julia(t_fractal *frac)
 
 	frac->z.re = ((XMAX - XMIN) * (double)frac->x / frac->disp.width + XMIN)
 		* frac->zoom + frac->off_x;
-	frac->z.im = ((YMAX - YMIN) * (double)frac->y / frac->disp.height + YMIN)
+	frac->z.im = (YMAX - (YMAX - YMIN) * (double)frac->y / frac->disp.height)
 		* frac->zoom + frac->off_y;
 	frac->iter = -1;
 	while (++frac->iter < frac->max_iter
