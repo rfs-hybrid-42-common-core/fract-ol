@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:45 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/26 03:18:45 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/27 14:39:17 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,26 @@ static bool	is_valid_name(char *input, const char *target)
 }
 
 /**
+ * @fn static void parse_phoenix_delta(t_fractal *frac, char *delta)
+ * @brief Parses and clamps the delta parameter for Phoenix fractals.
+ * @details Converts the string input to a double using ft_atod and enforces 
+ * bounds between DELTA_MIN and DELTA_MAX to prevent mathematical overflow.
+ * @param frac  Pointer to the main fractal structure.
+ * @param delta The string containing the delta value.
+ */
+static void	parse_phoenix_delta(t_fractal *frac, char *delta)
+{
+	frac->delta = ft_atod(delta);
+	if (frac->delta < DELTA_MIN)
+		frac->delta = DELTA_MIN;
+	else if (frac->delta > DELTA_MAX)
+		frac->delta = DELTA_MAX;
+}
+
+/**
  * @fn static bool is_julia_phoenix(t_fractal *frac, int argc, char **argv)
  * @brief Validates arguments specifically for Julia and Phoenix fractals.
- * @details Checks argument counts and parses real/imaginary (and delta) inputs 
- * using ft_atod.
+ * @details Checks argument counts, parses inputs, and sets the correct type.
  * @param frac Pointer to the main fractal structure.
  * @param argc Argument count.
  * @param argv Argument vector.
@@ -53,27 +69,24 @@ static bool	is_julia_phoenix(t_fractal *frac, int argc, char **argv)
 	{
 		frac->disp.name = JULIA_NAME;
 		frac->type = JULIA_TYPE;
-		frac->c.re = ft_atod(argv[2]);
-		frac->c.im = ft_atod(argv[3]);
-		return (true);
 	}
-	else if (argc == 5 && (is_valid_name(argv[1], PHOENIX_NAME)
-			|| is_valid_name(argv[1], PHOENIX_VARIANT_NAME)))
+	else if (argc == 5 && is_valid_name(argv[1], PHOENIX_NAME))
 	{
-		if (is_valid_name(argv[1], PHOENIX_NAME))
-			frac->disp.name = PHOENIX_NAME;
-		else
-			frac->disp.name = PHOENIX_VARIANT_NAME;
-		frac->c.re = ft_atod(argv[2]);
-		frac->c.im = ft_atod(argv[3]);
-		frac->delta = ft_atod(argv[4]);
-		if (frac->delta < DELTA_MIN)
-			frac->delta = DELTA_MIN;
-		else if (frac->delta > DELTA_MAX)
-			frac->delta = DELTA_MAX;
-		return (true);
+		frac->disp.name = PHOENIX_NAME;
+		frac->type = PHOENIX_TYPE;
 	}
-	return (false);
+	else if (argc == 5 && is_valid_name(argv[1], PHOENIX_VARIANT_NAME))
+	{
+		frac->disp.name = PHOENIX_VARIANT_NAME;
+		frac->type = PHOENIX_VARIANT_TYPE;
+	}
+	else
+		return (false);
+	frac->c.re = ft_atod(argv[2]);
+	frac->c.im = ft_atod(argv[3]);
+	if (argc == 5)
+		parse_phoenix_delta(frac, argv[4]);
+	return (true);
 }
 
 /**
