@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:01:31 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/27 18:41:53 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/29 14:04:23 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ static void	set_resolution(t_fractal *frac)
 static void	set_palettes(t_fractal *frac)
 {
 	frac->palette[0] = blue_orange_palette;
-	frac->palette[1] = lava_lamp_palette;
+	frac->palette[1] = inferno_palette;
 	frac->palette[2] = neon_cyberpunk_palette;
 	frac->palette[3] = phoenix_glow_palette;
 	frac->palette[4] = hsv_palette;
 	frac->palette[5] = autumn_palette;
 	frac->palette[6] = autumn_frost_palette;
-	frac->palette[7] = tropical_sunset_palette;
+	frac->palette[7] = firebird_psychedelic_palette;
 	frac->palette[8] = winter_sunrise_palette;
 	frac->palette[9] = funky_galaxy_palette;
 	frac->n_palettes = PALETTE_TOTAL;

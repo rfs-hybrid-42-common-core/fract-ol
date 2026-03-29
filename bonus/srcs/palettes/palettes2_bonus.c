@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 18:38:48 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/27 18:52:48 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/29 14:04:23 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	autumn_palette(int iter, int max_iter)
 	tmp = (double)iter / max_iter;
 	red = (int)(255 * sqrt(tmp));
 	green = (int)(255 * tmp * tmp);
-	blue = (int)(255 * tmp * tmp * tmp * tmp);
+	blue = (int)(255 * sqrt(tmp) * (1.0 - tmp));
 	return ((red << 16) | (green << 8) | blue);
 }
 
@@ -64,7 +64,7 @@ int	autumn_frost_palette(int iter, int max_iter)
 }
 
 /**
- * @fn int tropical_sunset_palette(int iter, int max_iter)
+ * @fn int firebird_psychedelic_palette(int iter, int max_iter)
  * @brief Generates a specific color based on the current iteration.
  * @details Uses trigonometric or polynomial functions to smoothly interpolate 
  * RGB values.
@@ -72,7 +72,7 @@ int	autumn_frost_palette(int iter, int max_iter)
  * @param max_iter The maximum iterations allowed.
  * @return         The calculated color as an integer (0xRRGGBB).
  */
-int	tropical_sunset_palette(int iter, int max_iter)
+int	firebird_psychedelic_palette(int iter, int max_iter)
 {
 	double	tmp;
 	int		red;
@@ -80,12 +80,9 @@ int	tropical_sunset_palette(int iter, int max_iter)
 	int		blue;
 
 	tmp = (double)iter / max_iter;
-	red = (int)(255 * (0.5 + 0.5 * sin(6.2831 * tmp + 0)));
-	red = (int)((0.8 * red) + (0.2 * (200 * tmp * (1 - tmp) * 255)));
-	green = (int)(255 * (0.5 + 0.5 * sin(6.2831 * tmp + 2)));
-	green = (int)((0.8 * green) + (0.2 * (200 * tmp * (1 - tmp) * 255)));
-	blue = (int)(255 * (0.5 + 0.5 * sin(6.2831 * tmp + 4)));
-	blue = (int)((0.8 * blue) + (0.2 * (200 * tmp * (1 - tmp) * 255)));
+	red = (int)(255 * (0.6 + 0.4 * sin(60.0 * tmp)));
+	green = (int)(255 * (0.5 + 0.5 * sin(60.0 * tmp - 0.8)));
+	blue = (int)(255 * (0.5 + 0.5 * sin(60.0 * tmp - 3.14)));
 	return ((red << 16) | (green << 8) | blue);
 }
 

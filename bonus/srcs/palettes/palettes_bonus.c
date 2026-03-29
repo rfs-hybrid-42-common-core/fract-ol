@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 18:38:52 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/27 18:41:56 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/28 21:32:00 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	blue_orange_palette(int iter, int max_iter)
 }
 
 /**
- * @fn int lava_lamp_palette(int iter, int max_iter)
+ * @fn int inferno_palette(int iter, int max_iter)
  * @brief Generates a specific color based on the current iteration.
  * @details Uses trigonometric or polynomial functions to smoothly interpolate 
  * RGB values.
@@ -44,19 +44,17 @@ int	blue_orange_palette(int iter, int max_iter)
  * @param max_iter The maximum iterations allowed.
  * @return         The calculated color as an integer (0xRRGGBB).
  */
-int	lava_lamp_palette(int iter, int max_iter)
+int	inferno_palette(int iter, int max_iter)
 {
 	double	tmp;
-	double	glow;
 	int		red;
 	int		green;
 	int		blue;
 
 	tmp = (double)iter / max_iter;
-	glow = sqrt(tmp);
-	red = (int)(255 * glow * (0.5 + 0.5 * cos(3.0 * 3.1415 * tmp)));
-	green = (int)(255 * glow * (0.5 + 0.5 * sin(6.2831 * tmp + 1.0)));
-	blue = (int)(255 * glow * (0.5 + 0.5 * sin(3.0 * 3.1415 * tmp)));
+	red = (int)(255 * sqrt(sin(tmp * 3.14159)));
+	green = (int)(255 * tmp * tmp * tmp);
+	blue = (int)(255 * tmp * tmp * tmp * tmp * tmp);
 	return ((red << 16) | (green << 8) | blue);
 }
 
@@ -132,25 +130,27 @@ int	phoenix_glow_palette(int iter, int max_iter)
 int	hsv_palette(int iter, int max_iter)
 {
 	double	tmp;
-	int		i;
 	double	f;
-	int		q;
+	int		i;
+	int		v;
 	int		p;
+	int		q;
 
 	tmp = (double)iter / max_iter;
+	v = (int)(255 * sqrt(tmp));
 	i = (int)(tmp * 6);
 	f = tmp * 6 - i;
-	q = (int)(255 * (1 - f));
-	p = (int)(255 * f);
+	q = (int)(v * (1 - f));
+	p = (int)(v * f);
 	if (i % 6 == 0)
-		return ((255 << 16) | (p << 8));
+		return ((v << 16) | (p << 8));
 	if (i % 6 == 1)
-		return ((q << 16) | (255 << 8));
+		return ((q << 16) | (v << 8));
 	if (i % 6 == 2)
-		return ((0 << 16) | (255 << 8) | p);
+		return ((0 << 16) | (v << 8) | p);
 	if (i % 6 == 3)
-		return ((0 << 16) | (q << 8) | 255);
+		return ((0 << 16) | (q << 8) | v);
 	if (i % 6 == 4)
-		return ((p << 16) | (0 << 8) | 255);
-	return ((255 << 16) | (0 << 8) | q);
+		return ((p << 16) | (0 << 8) | v);
+	return ((v << 16) | (0 << 8) | q);
 }
