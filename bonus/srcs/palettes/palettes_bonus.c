@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 18:38:52 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/28 21:32:00 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/29 14:25:11 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ int	phoenix_glow_palette(int iter, int max_iter)
 int	hsv_palette(int iter, int max_iter)
 {
 	double	tmp;
-	double	f;
 	int		i;
 	int		v;
 	int		p;
@@ -139,9 +138,8 @@ int	hsv_palette(int iter, int max_iter)
 	tmp = (double)iter / max_iter;
 	v = (int)(255 * sqrt(tmp));
 	i = (int)(tmp * 6);
-	f = tmp * 6 - i;
-	q = (int)(v * (1 - f));
-	p = (int)(v * f);
+	q = (int)(v * (1.0 - (tmp * 6.0 - i)));
+	p = (int)(v * (tmp * 6.0 - i));
 	if (i % 6 == 0)
 		return ((v << 16) | (p << 8));
 	if (i % 6 == 1)
