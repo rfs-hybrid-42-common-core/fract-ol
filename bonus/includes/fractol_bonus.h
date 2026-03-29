@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:25 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/27 18:57:15 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/29 20:33:00 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -481,13 +481,13 @@ double	ft_atod(const char *nptr);
 
 /* -------------------------------- Palettes -------------------------------- */
 int		blue_orange_palette(int iter, int max_iter);
-int		lava_lamp_palette(int iter, int max_iter);
+int		inferno_palette(int iter, int max_iter);
 int		neon_cyberpunk_palette(int iter, int max_iter);
 int		phoenix_glow_palette(int iter, int max_iter);
 int		hsv_palette(int iter, int max_iter);
 int		autumn_palette(int iter, int max_iter);
 int		autumn_frost_palette(int iter, int max_iter);
-int		tropical_sunset_palette(int iter, int max_iter);
+int		firebird_psychedelic_palette(int iter, int max_iter);
 int		winter_sunrise_palette(int iter, int max_iter);
 int		funky_galaxy_palette(int iter, int max_iter);
 
