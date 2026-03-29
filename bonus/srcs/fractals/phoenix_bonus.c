@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 00:59:43 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/27 15:57:56 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/29 13:46:49 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	phoenix(t_fractal *frac)
 	double	curr_re;
 	double	curr_im;
 
-	frac->z.re = ((YMAX - YMIN) * (double)frac->y / frac->disp.height + YMIN)
-		* frac->zoom + frac->off_y;
+	frac->z.re = (YMAX - (YMAX - YMIN) * (double)frac->y / frac->disp.height)
+		* frac->zoom - frac->off_y;
 	frac->z.im = ((XMAX - XMIN) * (double)frac->x / frac->disp.width + XMIN)
 		* frac->zoom + frac->off_x;
 	prev_re = 0.0;
