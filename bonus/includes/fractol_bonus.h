@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:25 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/29 20:33:00 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/30 17:08:55 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,7 +314,7 @@
 # define PHOENIX_VARIANT_NAME	"PHOENIX VARIANT"
 
 /* ========================================================================== */
-/* TYPEDEFS                                                                   */
+/* TYPEDEFS & DATA STRUCTURES                                                 */
 /* ========================================================================== */
 
 /**
@@ -325,10 +325,6 @@
  * @return         An integer representing the generated RGB color.
  */
 typedef int	(*t_palette_func)(int iter, int max_iter);
-
-/* ========================================================================== */
-/* DATA STRUCTURES                                                            */
-/* ========================================================================== */
 
 /**
  * @enum e_fractal_type
