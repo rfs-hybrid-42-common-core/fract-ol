@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:34:41 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/27 16:20:24 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/20 15:54:23 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,16 +133,19 @@ static void	update_iterations(int keysym, t_fractal *frac)
 }
 
 /**
- * @fn int handle_key_event(int keysym, t_fractal *frac)
+ * @fn int handle_key_event(int keysym, void *param)
  * @brief Main keyboard event router.
  * @details Catches ESC to exit, delegates other keys to sub-handlers, and 
  * re-renders the image.
  * @param keysym The keycode pressed.
- * @param frac   Pointer to the main fractal structure.
+ * @param param  Generic pointer, cast internally to (t_fractal *).
  * @return       EXIT_SUCCESS.
  */
-int	handle_key_event(int keysym, t_fractal *frac)
+int	handle_key_event(int keysym, void *param)
 {
+	t_fractal	*frac;
+
+	frac = (t_fractal *)param;
 	if (keysym == XK_Escape)
 		exit_program(&frac->disp);
 	update_phoenix_delta(keysym, frac);
