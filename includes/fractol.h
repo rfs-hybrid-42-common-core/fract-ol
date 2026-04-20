@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:19:25 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/30 17:08:42 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/20 15:49:46 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -354,8 +354,8 @@ void	init(t_fractal *frac);
 void	render(t_fractal *frac);
 
 /* ----------------------------- Event Handling ----------------------------- */
-int		handle_key_event(int keysym, t_fractal *frac);
-int		handle_mouse_event(int button, int x, int y, t_fractal *frac);
+int		handle_key_event(int keysym, void *param);
+int		handle_mouse_event(int button, int x, int y, void *param);
 
 /* ------------------------------- Algorithms ------------------------------- */
 void	mandelbrot(t_fractal *frac);

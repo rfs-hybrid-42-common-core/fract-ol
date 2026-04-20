@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 15:45:23 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/26 03:19:58 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/20 15:54:30 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,20 @@ static void	screen_zoom(int button, int x, int y, t_fractal *frac)
 }
 
 /**
- * @fn int handle_mouse_event(int button, int x, int y, t_fractal *frac)
+ * @fn int handle_mouse_event(int button, int x, int y, void *param)
  * @brief Hooks into MLX mouse events.
  * @details Triggers zooming and requests a re-render.
  * @param button The mouse button pressed.
  * @param x      X-coordinate of the mouse.
  * @param y      Y-coordinate of the mouse.
- * @param frac   Pointer to the main fractal structure.
+ * @param param  Generic pointer, cast internally to (t_fractal *).
  * @return       EXIT_SUCCESS.
  */
-int	handle_mouse_event(int button, int x, int y, t_fractal *frac)
+int	handle_mouse_event(int button, int x, int y, void *param)
 {
+	t_fractal	*frac;
+
+	frac = (t_fractal *)param;
 	if ((button == MOUSE_SCROLL_UP && frac->zoom > ZOOM_MIN)
 		|| (button == MOUSE_SCROLL_DOWN && frac->zoom < ZOOM_MAX))
 		screen_zoom(button, x, y, frac);
